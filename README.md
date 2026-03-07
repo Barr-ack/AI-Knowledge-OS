@@ -1,4 +1,4 @@
-# 🧠 Enterprise Knowledge Assistant
+#  Enterprise Knowledge Assistant
 
 A production-ready **RAG (Retrieval-Augmented Generation)** system that lets employees ask natural language questions about internal company documents — policies, manuals, procedures, and technical documentation.
 
@@ -35,7 +35,7 @@ User Question
 
 ---
 
-## 📁 Project Structure
+##  Project Structure
 
 ```
 enterprise-knowledge-assistant/
@@ -117,15 +117,6 @@ Open `frontend/index.html` in your browser directly, OR serve it:
 # From the project root
 python -m http.server 5500 --directory frontend
 # Then open: http://localhost:5500
-```
-
----
-
-##  One-Command Start (Linux/Mac)
-
-```bash
-chmod +x run.sh
-./run.sh
 ```
 
 ---
@@ -229,7 +220,7 @@ All settings are in `.env`. Key options:
 | Variable | Default | Description |
 |---|---|---|
 | `GEMINI_API_KEY` | — | **Required.** Your Google Gemini API key |
-| `GEMINI_MODEL` | `gemini-1.5-flash` | Gemini model for generation |
+| `GEMINI_MODEL` | `gemini-2.5-flash` | Gemini model for generation |
 | `VECTOR_STORE_TYPE` | `faiss` | `faiss` or `chroma` |
 | `CHUNK_SIZE` | `1000` | Characters per document chunk |
 | `CHUNK_OVERLAP` | `200` | Overlap between chunks |
@@ -243,7 +234,7 @@ All settings are in `.env`. Key options:
 
 | Layer | Technology |
 |---|---|
-| **LLM** | Google Gemini 1.5 Flash |
+| **LLM** | Google Gemini 2.5 Flash |
 | **Embeddings** | Google Gemini `embedding-001` |
 | **Vector DB** | FAISS (default) / Chroma |
 | **RAG Framework** | LangChain |
