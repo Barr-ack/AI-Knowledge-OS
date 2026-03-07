@@ -6,7 +6,7 @@ Built with **Python + FastAPI + LangChain + Google Gemini + FAISS** and a modern
 
 ---
 
-## 🏗️ Architecture
+##  Architecture
 
 ```
 User Question
@@ -64,7 +64,7 @@ enterprise-knowledge-assistant/
 
 ---
 
-## ⚡ Quick Start
+##  Quick Start
 
 ### Prerequisites
 
@@ -75,11 +75,11 @@ enterprise-knowledge-assistant/
 
 ```bash
 # Clone the repository
-git clone <repo-url>
+git clone https://github.com/Barr-ack/AI-Knowledge-OS.git
 cd enterprise-knowledge-assistant
 
-# Copy environment template
-cp .env.example .env
+# environment template
+create a  .env file
 ```
 
 ### Step 2: Configure API Key
@@ -121,7 +121,7 @@ python -m http.server 5500 --directory frontend
 
 ---
 
-## 🚀 One-Command Start (Linux/Mac)
+##  One-Command Start (Linux/Mac)
 
 ```bash
 chmod +x run.sh
@@ -130,7 +130,7 @@ chmod +x run.sh
 
 ---
 
-## 📖 Usage
+##  Usage
 
 ### Uploading Documents
 
@@ -239,7 +239,7 @@ All settings are in `.env`. Key options:
 
 ---
 
-## 🛠️ Tech Stack
+##  Tech Stack
 
 | Layer | Technology |
 |---|---|
@@ -254,7 +254,7 @@ All settings are in `.env`. Key options:
 
 ---
 
-## 🔒 Security Notes
+##  Security Notes
 
 - Store `GEMINI_API_KEY` only in `.env`, never in code
 - Add `.env` to `.gitignore` before committing
