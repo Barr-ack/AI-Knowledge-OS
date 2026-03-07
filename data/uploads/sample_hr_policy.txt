@@ -1,0 +1,103 @@
+ACME CORPORATION — EMPLOYEE HANDBOOK
+Version 3.2 | Updated January 2025
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+SECTION 1: LEAVE AND VACATION POLICY
+
+1.1 Annual Leave
+All full-time employees are entitled to 20 days of paid annual leave per calendar year. Leave accrues at a rate of 1.67 days per month. Employees must request leave at least 5 business days in advance using the HR portal.
+
+1.2 Sick Leave
+Employees receive 10 days of paid sick leave per year. Sick leave does not roll over to the next calendar year. For absences exceeding 3 consecutive days, a medical certificate must be submitted.
+
+1.3 Parental Leave
+Primary caregivers are entitled to 16 weeks of paid parental leave. Secondary caregivers receive 4 weeks of paid parental leave. Leave must be taken within 12 months of the child's birth or adoption.
+
+1.4 Public Holidays
+The company observes all statutory public holidays. When a public holiday falls on a weekend, the following Monday is observed as the substitute holiday.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+SECTION 2: REMOTE WORK POLICY
+
+2.1 Eligibility
+All employees who have completed their 3-month probation period are eligible for remote work arrangements. Remote work requires manager approval and must not impact team collaboration or project delivery.
+
+2.2 Remote Work Days
+Employees may work remotely up to 3 days per week. All employees are required to be in the office on Tuesdays and Thursdays for team collaboration days.
+
+2.3 Equipment and Security
+The company will provide a laptop and necessary peripherals for remote work. Employees must use a VPN when accessing company systems remotely. Personal devices must not be used for work purposes without prior IT approval.
+
+2.4 Home Office Stipend
+Employees working remotely receive a monthly stipend of $75 to cover internet and utility costs. This is paid monthly as part of the payroll.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+SECTION 3: ONBOARDING PROCESS
+
+3.1 Pre-Joining
+New hires will receive a welcome email 5 business days before their start date containing their IT credentials, office access information, and first-day schedule. Employees should complete online compliance training before Day 1.
+
+3.2 First Week
+Day 1: HR orientation, IT setup, office tour, and meeting with direct manager.
+Days 2–3: Department introductions and access provisioning.
+Days 4–5: Role-specific training begins with assigned buddy/mentor.
+
+3.3 Probation Period
+New employees serve a 3-month probation period. Performance is reviewed at the end of Week 4 and Week 12. Successful completion of probation is confirmed in writing by the HR department.
+
+3.4 Buddy Program
+Each new hire is assigned a buddy from their team to help navigate the company culture, tools, and processes. Buddy assignments last for the first 90 days.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+SECTION 4: CODE OF CONDUCT
+
+4.1 Professional Behavior
+All employees are expected to treat colleagues, clients, and partners with respect and professionalism. Discrimination, harassment, or bullying of any kind will not be tolerated and may result in immediate dismissal.
+
+4.2 Confidentiality
+Employees must not disclose confidential company information, including financial data, client information, or proprietary technology, to unauthorized parties. This obligation continues for 2 years after employment ends.
+
+4.3 Conflict of Interest
+Employees must disclose any potential conflict of interest to their manager and HR. This includes outside employment, investments in competitors, or personal relationships with vendors.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+SECTION 5: PERFORMANCE MANAGEMENT
+
+5.1 Review Cycle
+Performance reviews are conducted bi-annually: in June and December. Each review includes self-assessment, manager assessment, and a structured 1:1 discussion.
+
+5.2 Performance Improvement Plans (PIP)
+If performance issues are identified, a formal PIP will be implemented with clear goals, timelines, and support mechanisms. PIPs last 60–90 days with weekly check-ins.
+
+5.3 Compensation Reviews
+Salary adjustments are considered annually in January based on performance ratings, market benchmarking, and company financial performance. Outstanding performers (rating 4.5+) are eligible for up to 15% merit increases.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+SECTION 6: IT AND SECURITY POLICIES
+
+6.1 Password Policy
+Passwords must be at least 14 characters, include uppercase, lowercase, numbers, and symbols. Passwords must be changed every 90 days. Password reuse is not permitted for the last 10 passwords.
+
+6.2 Data Classification
+Company data is classified into four levels: Public, Internal, Confidential, and Restricted. Employees must handle data according to its classification. Restricted data must be encrypted at rest and in transit.
+
+6.3 Incident Reporting
+Any security incidents, data breaches, or suspicious activity must be reported to security@acme.com within 2 hours of discovery. The Security team will investigate and respond within 24 hours.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+CONTACT INFORMATION
+
+HR Department: hr@acme.com | +1 (555) 012-3456
+IT Helpdesk: helpdesk@acme.com | Ext. 1100
+Security Team: security@acme.com | Ext. 1200
+Legal/Compliance: legal@acme.com | Ext. 1300
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+End of Employee Handbook v3.2

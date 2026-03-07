@@ -1,0 +1,104 @@
+ACME CORPORATION — TECHNICAL DOCUMENTATION STANDARDS
+Engineering Team | Version 2.1 | March 2025
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+SECTION 1: API DEVELOPMENT STANDARDS
+
+1.1 RESTful API Design Principles
+All APIs must follow REST principles. Use standard HTTP verbs: GET for retrieval, POST for creation, PUT/PATCH for updates, DELETE for deletion. URLs must be lowercase, hyphenated, and noun-based (e.g., /user-profiles, not /getUsers).
+
+1.2 Versioning
+All APIs must be versioned using URL-path versioning: /api/v1/resource. Breaking changes require a new major version. Minor additions (new fields) do not require version bumps.
+
+1.3 Authentication
+All APIs must use JWT Bearer token authentication. Tokens expire after 1 hour for access tokens and 30 days for refresh tokens. API keys must be passed in the Authorization header, never in query parameters.
+
+1.4 Response Format
+All API responses must return JSON. Success responses use HTTP 200-299 status codes. Error responses must include an error code, human-readable message, and request ID for debugging.
+
+Example success response:
+{
+  "data": { ... },
+  "meta": { "request_id": "abc123", "timestamp": "2025-03-01T10:00:00Z" }
+}
+
+Example error response:
+{
+  "error": { "code": "VALIDATION_ERROR", "message": "Email is required", "request_id": "abc123" }
+}
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+SECTION 2: CODE REVIEW PROCESS
+
+2.1 Pull Request Requirements
+All code changes must be submitted via Pull Requests (PRs). PRs must reference a Jira ticket number. PR descriptions must explain WHAT changed, WHY it was changed, and HOW to test it. PRs with more than 400 lines of changed code should be broken into smaller PRs.
+
+2.2 Review Requirements
+Each PR requires a minimum of 2 approvals from team members. At least 1 reviewer must be a senior engineer for changes to core systems. Security-sensitive changes require approval from the Security team.
+
+2.3 Automated Checks
+All PRs must pass: unit tests (>80% coverage), linting (ESLint/Flake8), security scanning (Snyk), and build checks. CI/CD pipeline runs automatically on every PR push.
+
+2.4 Merge Strategy
+All merges must use squash-and-merge to maintain clean history. Feature branches must be rebased on main before merging. Delete branches after merging.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+SECTION 3: DATABASE STANDARDS
+
+3.1 Schema Design
+Tables must use snake_case naming. Primary keys must be UUIDs. All tables require created_at and updated_at timestamp columns with automatic management. Foreign keys must be indexed.
+
+3.2 Migrations
+Database changes must use migration files (Alembic for Python, Flyway for Java). Migration files must be reversible (include both upgrade and downgrade). Never modify existing migration files — create new ones.
+
+3.3 Query Performance
+Queries returning more than 1000 rows must use pagination. Queries running longer than 2 seconds must be flagged for optimization. Use EXPLAIN ANALYZE to review query plans for complex queries.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+SECTION 4: DEPLOYMENT PROCESS
+
+4.1 Environments
+Code progresses through: Development → Staging → Production. No direct deployments to Production are permitted. Staging must be tested for a minimum of 24 hours before production deployment.
+
+4.2 Deployment Schedule
+Production deployments are allowed Monday to Thursday between 10:00 AM and 3:00 PM UTC. No deployments on Fridays or weekends (except emergency hotfixes). All deployments require a deployment ticket in Jira.
+
+4.3 Rollback Procedure
+Each deployment must have a documented rollback plan. Rollback can be initiated by any senior engineer in case of critical issues. The on-call engineer must be notified for any production deployment.
+
+4.4 Feature Flags
+New features should use feature flags for gradual rollout. Feature flags are managed in LaunchDarkly. Remove feature flags within 2 sprints of full production rollout.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+SECTION 5: INCIDENT MANAGEMENT
+
+5.1 Severity Levels
+P0 (Critical): Production completely down, data loss, security breach. Response: 15 minutes.
+P1 (High): Major feature unavailable, >20% users impacted. Response: 1 hour.
+P2 (Medium): Feature degraded, workaround available. Response: 4 hours.
+P3 (Low): Minor issue, minimal impact. Response: 24 hours.
+
+5.2 On-Call Rotation
+On-call rotation is managed via PagerDuty. Each engineer participates in on-call rotation for 1 week every 6 weeks. On-call hours: 24/7 for P0/P1, business hours for P2/P3.
+
+5.3 Post-Mortems
+All P0 and P1 incidents require a post-mortem within 5 business days. Post-mortems must identify root cause, timeline, impact, and action items. Post-mortems are blameless — focus on systems, not individuals.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+SECTION 6: DOCUMENTATION REQUIREMENTS
+
+6.1 Code Documentation
+All public functions must have docstrings. Complex business logic must include inline comments. README files are required for all repositories and must include: purpose, setup instructions, API reference, and contribution guide.
+
+6.2 Architecture Decision Records (ADRs)
+Significant technical decisions must be documented as ADRs in Confluence. ADRs include: context, decision, consequences, and alternatives considered. ADRs must be reviewed by the Tech Lead.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+End of Technical Documentation Standards v2.1
+Engineering Team | engineering@acme.com
