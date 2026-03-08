@@ -11,10 +11,9 @@
 </head>
 <body>
 
-<!-- ─── App Shell ──────────────────────────────────────────────────────────── -->
 <div class="app-shell">
 
-  <!-- ─── Sidebar ─────────────────────────────────────────────────────────── -->
+  
   <aside class="sidebar" id="sidebar">
     <div class="sidebar-header">
       <div class="logo">
@@ -37,7 +36,7 @@
       </button>
     </div>
 
-    <!-- New Chat Button -->
+    
     <button class="new-chat-btn" id="newChatBtn">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
         <path d="M12 5v14M5 12h14"/>
@@ -45,7 +44,7 @@
       New Conversation
     </button>
 
-    <!-- Document Upload Section -->
+    
     <div class="sidebar-section">
       <div class="section-label">Knowledge Base</div>
       <div class="upload-zone" id="uploadZone">
@@ -64,7 +63,7 @@
         </div>
       </div>
 
-      <!-- Upload Progress -->
+      
       <div class="upload-progress-container" id="uploadProgress" style="display:none">
         <div class="upload-progress-header">
           <span id="uploadFileName">Uploading...</span>
@@ -75,17 +74,17 @@
         </div>
       </div>
 
-      <!-- Uploaded Documents List -->
+      
       <div class="documents-list" id="documentsList"></div>
 
-      <!-- KB Status -->
+      
       <div class="kb-status" id="kbStatus">
         <div class="kb-status-dot" id="kbStatusDot"></div>
         <span id="kbStatusText">Knowledge base empty</span>
       </div>
     </div>
 
-    <!-- Chat History -->
+    
     <div class="sidebar-section sidebar-history">
       <div class="section-label">Recent Chats</div>
       <div class="history-list" id="historyList">
@@ -101,10 +100,10 @@
     </div>
   </aside>
 
-  <!-- ─── Main Chat Area ────────────────────────────────────────────────── -->
+  
   <main class="chat-main">
 
-    <!-- Top Bar -->
+    
     <header class="topbar">
       <button class="menu-btn" id="menuBtn" aria-label="Open sidebar">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -128,9 +127,9 @@
       </div>
     </header>
 
-    <!-- Messages Container -->
+    
     <div class="messages-container" id="messagesContainer">
-      <!-- Welcome Screen -->
+      
       <div class="welcome-screen" id="welcomeScreen">
         <div class="welcome-content">
           <div class="welcome-icon">
@@ -167,11 +166,11 @@
         </div>
       </div>
 
-      <!-- Chat Messages will be injected here -->
+      
       <div class="messages-list" id="messagesList"></div>
     </div>
 
-    <!-- Input Area -->
+    
     <div class="input-area">
       <div class="input-wrapper">
         <button class="attach-btn" id="attachBtn" title="Upload document">
@@ -203,7 +202,7 @@
   </main>
 </div>
 
-<!-- ─── Notification Toast ─────────────────────────────────────────────────── -->
+
 <div class="toast" id="toast">
   <div class="toast-icon" id="toastIcon"></div>
   <span id="toastMessage">Notification</span>
