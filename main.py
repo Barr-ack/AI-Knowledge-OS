@@ -1,13 +1,3 @@
-"""
-Enterprise Knowledge Assistant — FastAPI Backend Server
-
-Main application entry point providing REST API endpoints:
-- POST /upload  — Ingest documents into the knowledge base
-- POST /ask     — Ask questions via RAG pipeline
-- GET  /health  — Health check and system status
-- GET  /stats   — Vector store statistics
-- DELETE /session/{id} — Clear conversation history
-"""
 
 import logging
 import os
