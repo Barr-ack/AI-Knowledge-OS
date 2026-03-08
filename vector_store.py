@@ -1,11 +1,3 @@
-"""
-Vector Store module for Enterprise Knowledge Assistant.
-
-Manages creation, persistence, and querying of vector embeddings.
-Supports both FAISS (local) and Chroma (persistent) vector databases.
-
-Embeddings are generated using Google's Gemini embedding model.
-"""
 
 import logging
 import os
@@ -22,10 +14,7 @@ logger = logging.getLogger(__name__)
 
 
 class VectorStoreManager:
-    """
-    Manages vector store operations including creation, persistence,
-    updating, and semantic search.
-    """
+    
 
     def __init__(self):
         """Initialize VectorStoreManager with embedding model and storage config."""
@@ -41,12 +30,7 @@ class VectorStoreManager:
         self._try_load_existing_store()
 
     def _initialize_embeddings(self) -> GoogleGenerativeAIEmbeddings:
-        """
-        Initialize Gemini embedding model.
-
-        Returns:
-            GoogleGenerativeAIEmbeddings instance
-        """
+       
         logger.info(
             f"Initializing embeddings with model: {settings.GEMINI_EMBEDDING_MODEL}"
         )
@@ -161,7 +145,7 @@ class VectorStoreManager:
             raise
 
     def load_store(self):
-        """Load vector store from disk."""
+        
         try:
             if self.store_type == "faiss":
                 from langchain_community.vectorstores import FAISS
