@@ -1,13 +1,3 @@
-"""
-Document Loader module for Enterprise Knowledge Assistant.
-
-Handles loading and chunking of various document formats:
-- PDF files (using pypdf via LangChain)
-- DOCX files (using python-docx via LangChain)
-- TXT files (plain text)
-
-Documents are split into overlapping chunks for optimal RAG performance.
-"""
 
 import logging
 import os
