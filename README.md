@@ -151,7 +151,7 @@ python -m http.server 5500 --directory frontend
 
 ---
 
-## 🔌 API Reference
+##  API Reference
 
 ### POST `/upload`
 Upload a document to the knowledge base.
@@ -213,7 +213,7 @@ Clear all indexed documents.
 
 ---
 
-## ⚙️ Configuration
+##  Configuration
 
 All settings are in `.env`. Key options:
 
@@ -254,6 +254,6 @@ All settings are in `.env`. Key options:
 
 ---
 
-## 📝 License
+##  License
 
 MIT License — Free to use and modify for personal and commercial projects.
