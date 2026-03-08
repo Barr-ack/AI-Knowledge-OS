@@ -1,14 +1,3 @@
-"""
-RAG Pipeline module for Enterprise Knowledge Assistant.
-
-Implements the Retrieval-Augmented Generation pipeline:
-1. Embed user question
-2. Semantic search in vector store
-3. Retrieve top-K relevant document chunks
-4. Build context-aware prompt with conversation history
-5. Generate answer using Google Gemini LLM
-6. Return answer with source citations
-"""
 
 import logging
 from typing import Dict, List, Optional, Tuple
@@ -22,7 +11,6 @@ from vector_store import vector_store_manager
 logger = logging.getLogger(__name__)
 
 
-# ─── System Prompt ────────────────────────────────────────────────────────────
 
 SYSTEM_PROMPT = """You are an expert Enterprise Knowledge Assistant for a company's internal knowledge base.
 Your role is to help employees find accurate information from company documents including:
@@ -45,13 +33,8 @@ INSTRUCTIONS:
 IMPORTANT: Never make up information. Only use what's in the provided context."""
 
 
-# ─── Conversation Memory ───────────────────────────────────────────────────────
 
 class ConversationMemory:
-    """
-    Manages conversation history for multi-turn conversations.
-    Keeps a rolling window of the last N conversation turns.
-    """
 
     def __init__(self, max_turns: int = settings.MAX_HISTORY_TURNS):
         self.max_turns = max_turns
@@ -95,10 +78,6 @@ class ConversationMemory:
 
 
 class RAGPipeline:
-    """
-    Complete RAG pipeline that retrieves relevant documents and generates
-    contextually-aware answers using Google Gemini.
-    """
 
     def __init__(self):
         """Initialize RAG pipeline with Gemini LLM and conversation memories."""
@@ -169,7 +148,7 @@ class RAGPipeline:
         sources = []
 
         for i, (doc, score) in enumerate(retrieved_docs):
-            # Extract metadata
+            
             source_file = doc.metadata.get("source_file", "Unknown Document")
             page = doc.metadata.get("page", None)
             chunk_idx = doc.metadata.get("chunk_index", i)
