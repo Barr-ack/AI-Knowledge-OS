@@ -1,36 +1,23 @@
-/**
- * Enterprise Knowledge Assistant — Frontend JavaScript
- *
- * Handles:
- * - Chat interface (send/receive messages, streaming-style rendering)
- * - Document upload with drag-and-drop
- * - Conversation session management
- * - Source citation display
- * - Sidebar and history management
- * - Toast notifications
- */
+
 
 'use strict';
 
-// ─── Configuration ────────────────────────────────────────────────────────────
 
 const CONFIG = {
   API_BASE: 'http://localhost:8000',
   MAX_CHAR: 2000,
 };
 
-// ─── State ────────────────────────────────────────────────────────────────────
 
 const state = {
   sessionId: generateUUID(),
   isLoading: false,
-  uploadedDocs: [],          // { name, chunks, type }
-  conversations: [],         // { id, title, messages[] }
+  uploadedDocs: [],          
+  conversations: [],         
   currentConvId: null,
   kbHasDocuments: false,
 };
 
-// ─── DOM References ───────────────────────────────────────────────────────────
 
 const $ = id => document.getElementById(id);
 
@@ -66,7 +53,6 @@ const dom = {
   toastIcon:        $('toastIcon'),
 };
 
-// ─── Initialization ───────────────────────────────────────────────────────────
 
 async function init() {
   bindEvents();
@@ -74,23 +60,22 @@ async function init() {
   restoreSessionFromStorage();
 }
 
-// ─── Event Bindings ───────────────────────────────────────────────────────────
 
 function bindEvents() {
-  // Sidebar toggle
+
   dom.sidebarToggle.addEventListener('click', closeSidebar);
   dom.menuBtn.addEventListener('click', openSidebar);
 
-  // New chat
+  
   dom.newChatBtn.addEventListener('click', startNewChat);
 
-  // File upload
+  
   dom.browseBtn.addEventListener('click', e => { e.stopPropagation(); dom.fileInput.click(); });
   dom.uploadZone.addEventListener('click', () => dom.fileInput.click());
   dom.fileInput.addEventListener('change', e => handleFileSelect(e.target.files));
   dom.attachBtn.addEventListener('click', () => dom.fileInput.click());
 
-  // Drag and drop
+  
   dom.uploadZone.addEventListener('dragover', e => { e.preventDefault(); dom.uploadZone.classList.add('drag-over'); });
   dom.uploadZone.addEventListener('dragleave', () => dom.uploadZone.classList.remove('drag-over'));
   dom.uploadZone.addEventListener('drop', e => {
@@ -99,7 +84,7 @@ function bindEvents() {
     handleFileSelect(e.dataTransfer.files);
   });
 
-  // Chat input
+  
   dom.messageInput.addEventListener('input', onInputChange);
   dom.messageInput.addEventListener('keydown', e => {
     if (e.key === 'Enter' && !e.shiftKey) {
@@ -108,13 +93,12 @@ function bindEvents() {
     }
   });
 
-  // Send
+
   dom.sendBtn.addEventListener('click', sendMessage);
 
-  // Clear chat
+  
   dom.clearChatBtn.addEventListener('click', clearCurrentChat);
 
-  // Suggestion chips
   document.addEventListener('click', e => {
     const chip = e.target.closest('.suggestion-chip');
     if (chip) {
@@ -126,45 +110,45 @@ function bindEvents() {
   });
 }
 
-// ─── Input Handling ───────────────────────────────────────────────────────────
+
 
 function onInputChange() {
   const val = dom.messageInput.value;
   const len = val.length;
 
-  // Update char counter
+  
   dom.charCount.textContent = `${len}/${CONFIG.MAX_CHAR}`;
   dom.charCount.style.color = len > CONFIG.MAX_CHAR * 0.9 ? 'var(--warning)' : '';
 
-  // Enable/disable send button
+  
   dom.sendBtn.disabled = len === 0 || state.isLoading;
 
-  // Auto-resize textarea
+  
   dom.messageInput.style.height = 'auto';
   dom.messageInput.style.height = Math.min(dom.messageInput.scrollHeight, 160) + 'px';
 }
 
-// ─── Send Message ─────────────────────────────────────────────────────────────
+
 
 async function sendMessage() {
   const question = dom.messageInput.value.trim();
   if (!question || state.isLoading) return;
 
-  // Hide welcome screen, show messages
+
   dom.welcomeScreen.style.display = 'none';
 
-  // Add user message to UI
+  
   appendMessage('user', question);
 
-  // Clear input
+  
   dom.messageInput.value = '';
   dom.messageInput.style.height = 'auto';
   onInputChange();
 
-  // Create/update conversation in history
+  
   ensureConversation(question);
 
-  // Show typing indicator
+  
   const typingId = showTypingIndicator();
 
   state.isLoading = true;
@@ -189,16 +173,16 @@ async function sendMessage() {
 
     const data = await response.json();
 
-    // Append AI response
+    
     appendMessage('assistant', data.answer, {
       sources: data.sources,
       hasContext: data.has_context,
     });
 
-    // Save session ID from response (in case backend generated one)
+    
     if (data.session_id) state.sessionId = data.session_id;
 
-    // Update conversation in history
+    
     saveConversationTurn(question, data.answer);
 
   } catch (err) {
@@ -218,7 +202,7 @@ async function sendMessage() {
   }
 }
 
-// ─── Message Rendering ────────────────────────────────────────────────────────
+
 
 function appendMessage(role, content, meta = {}) {
   const msg = document.createElement('div');
@@ -287,37 +271,37 @@ function appendMessage(role, content, meta = {}) {
   return msg;
 }
 
-// Simple markdown renderer for assistant messages
+
 function renderMarkdown(text) {
   return text
-    // Code blocks
+    
     .replace(/```(\w*)\n([\s\S]*?)```/g, '<pre><code>$2</code></pre>')
-    // Inline code
+    
     .replace(/`([^`]+)`/g, '<code>$1</code>')
-    // Bold
+    
     .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
-    // Italic
+    
     .replace(/\*(.+?)\*/g, '<em>$1</em>')
-    // Headers
+    
     .replace(/^### (.+)$/gm, '<h3>$1</h3>')
     .replace(/^## (.+)$/gm, '<h2>$1</h2>')
     .replace(/^# (.+)$/gm, '<h1>$1</h1>')
-    // Unordered lists
+    
     .replace(/^\s*[-•] (.+)$/gm, '<li>$1</li>')
     .replace(/(<li>.*<\/li>\n?)+/g, '<ul>$&</ul>')
-    // Ordered lists
+    
     .replace(/^\d+\. (.+)$/gm, '<li>$1</li>')
-    // Line breaks — paragraphs
+    
     .replace(/\n\n/g, '</p><p>')
     .replace(/^(?!<[hupol])(.+)$/gm, (_, p) => p ? p : '')
-    // Wrap in paragraph tags if needed
+    
     .replace(/^([^<].*)$/gm, (match) => {
       if (!match.startsWith('<') && match.trim()) return match;
       return match;
     })
-    // Clean up extra breaks
+    
     .replace(/\n/g, '<br>')
-    // Wrap in p if plain text starts
+    
     ;
 }
 
@@ -329,7 +313,6 @@ function escapeHtml(text) {
     .replace(/"/g, '&quot;');
 }
 
-// ─── Typing Indicator ─────────────────────────────────────────────────────────
 
 function showTypingIndicator() {
   const id = 'typing-' + Date.now();
@@ -363,7 +346,6 @@ function removeTypingIndicator(id) {
   if (el) el.remove();
 }
 
-// ─── File Upload ──────────────────────────────────────────────────────────────
 
 async function handleFileSelect(files) {
   if (!files || files.length === 0) return;
@@ -372,7 +354,7 @@ async function handleFileSelect(files) {
     await uploadFile(file);
   }
 
-  // Reset file input
+  
   dom.fileInput.value = '';
 }
 
@@ -390,13 +372,13 @@ async function uploadFile(file) {
     return;
   }
 
-  // Show progress
+
   dom.uploadFileName.textContent = file.name;
   dom.uploadPercent.textContent = '0%';
   dom.progressBarFill.style.width = '0%';
   dom.uploadProgress.style.display = 'block';
 
-  // Animate progress (simulated for UX while actual upload happens)
+  
   let progress = 0;
   const progressInterval = setInterval(() => {
     progress = Math.min(progress + Math.random() * 15, 85);
@@ -415,7 +397,7 @@ async function uploadFile(file) {
 
     clearInterval(progressInterval);
 
-    // Complete progress
+    
     dom.progressBarFill.style.width = '100%';
     dom.uploadPercent.textContent = '100%';
 
@@ -426,7 +408,7 @@ async function uploadFile(file) {
 
     const data = await response.json();
 
-    // Add to documents list
+    
     addDocumentToList(file.name, data.chunks_created, ext.slice(1));
     state.kbHasDocuments = true;
     updateKBStatus(true, state.uploadedDocs.length);
@@ -475,7 +457,7 @@ function updateKBStatus(active, count) {
     : 'Knowledge base empty';
 }
 
-// ─── Conversation Management ──────────────────────────────────────────────────
+
 
 function ensureConversation(firstQuestion) {
   if (!state.currentConvId) {
@@ -513,7 +495,7 @@ function renderHistoryList() {
     </div>
   `).join('');
 
-  // Click handlers
+  
   dom.historyList.querySelectorAll('.history-item').forEach(item => {
     item.addEventListener('click', () => loadConversation(item.dataset.id));
   });
@@ -524,9 +506,8 @@ function loadConversation(convId) {
   if (!conv) return;
 
   state.currentConvId = convId;
-  state.sessionId = convId; // Use same ID for backend session
+  state.sessionId = convId; 
 
-  // Clear and rebuild message list
   dom.messagesList.innerHTML = '';
   dom.welcomeScreen.style.display = 'none';
 
@@ -537,7 +518,6 @@ function loadConversation(convId) {
   dom.topbarTitle.textContent = conv.title;
   renderHistoryList();
 
-  // On mobile, close sidebar after selecting
   if (window.innerWidth < 768) closeSidebar();
 }
 
@@ -554,15 +534,13 @@ function startNewChat() {
 function clearCurrentChat() {
   if (!state.currentConvId) return;
 
-  // Clear messages in UI
+
   dom.messagesList.innerHTML = '';
   dom.welcomeScreen.style.display = 'flex';
 
-  // Clear backend session
   fetch(`${CONFIG.API_BASE}/session/${state.sessionId}`, { method: 'DELETE' })
     .catch(() => {});
 
-  // Remove from conversations
   state.conversations = state.conversations.filter(c => c.id !== state.currentConvId);
   state.currentConvId = null;
   state.sessionId = generateUUID();
@@ -571,14 +549,13 @@ function clearCurrentChat() {
   saveToLocalStorage();
 }
 
-// ─── Health Check ─────────────────────────────────────────────────────────────
 
 async function checkHealth() {
   try {
     const res = await fetch(`${CONFIG.API_BASE}/health`, { signal: AbortSignal.timeout(5000) });
     if (res.ok) {
       const data = await res.json();
-      // Update KB status if documents are already loaded
+      
       if (data.vector_store?.is_initialized) {
         state.kbHasDocuments = true;
         const count = data.vector_store?.total_vectors || '?';
@@ -600,7 +577,6 @@ function setConnectionStatus(connected) {
   label.textContent = connected ? 'Connected' : 'Offline';
 }
 
-// ─── Sidebar ──────────────────────────────────────────────────────────────────
 
 function openSidebar() {
   if (window.innerWidth < 768) {
@@ -618,7 +594,7 @@ function closeSidebar() {
   }
 }
 
-// ─── Toast ────────────────────────────────────────────────────────────────────
+
 
 let toastTimeout;
 
@@ -639,7 +615,6 @@ function showToast(message, type = 'info') {
   toastTimeout = setTimeout(() => dom.toast.classList.remove('show'), 4000);
 }
 
-// ─── Local Storage ────────────────────────────────────────────────────────────
 
 function saveToLocalStorage() {
   try {
@@ -670,7 +645,6 @@ function restoreSessionFromStorage() {
   } catch {}
 }
 
-// ─── Utilities ────────────────────────────────────────────────────────────────
 
 function scrollToBottom() {
   requestAnimationFrame(() => {
@@ -685,6 +659,5 @@ function generateUUID() {
   }) + '-' + Date.now().toString(36);
 }
 
-// ─── Boot ─────────────────────────────────────────────────────────────────────
 
 document.addEventListener('DOMContentLoaded', init);
