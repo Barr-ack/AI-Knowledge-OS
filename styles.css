@@ -1,7 +1,7 @@
 
 
 :root {
-  /* Color Palette */
+  
   --bg-base:         #0d0f12;
   --bg-surface:      #141720;
   --bg-elevated:     #1a1e28;
@@ -26,11 +26,11 @@
   --error:           #ef4444;
   --warning:         #f59e0b;
 
-  /* Typography */
+  
   --font-display:   'Syne', sans-serif;
   --font-body:      'DM Sans', sans-serif;
 
-  /* Sizes */
+  
   --sidebar-width:   300px;
   --topbar-height:   60px;
   --input-area-h:    120px;
@@ -38,12 +38,11 @@
   --radius-sm:       8px;
   --radius-lg:       18px;
 
-  /* Transitions */
+  
   --transition:      0.2s cubic-bezier(0.4, 0, 0.2, 1);
   --transition-slow: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* ─── Reset & Base ─────────────────────────────────────────────────────────── */
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -63,7 +62,7 @@ textarea { font: inherit; resize: none; border: none; background: none; color: i
 input { font: inherit; }
 a { color: var(--accent); text-decoration: none; }
 
-/* ─── App Shell ────────────────────────────────────────────────────────────── */
+
 
 .app-shell {
   display: flex;
@@ -72,7 +71,7 @@ a { color: var(--accent); text-decoration: none; }
   position: relative;
 }
 
-/* ─── Sidebar ──────────────────────────────────────────────────────────────── */
+
 
 .sidebar {
   width: var(--sidebar-width);
@@ -94,7 +93,7 @@ a { color: var(--accent); text-decoration: none; }
   top: 0; left: 0;
 }
 
-/* Logo */
+
 .sidebar-header {
   padding: 20px 18px 16px;
   display: flex;
@@ -152,7 +151,7 @@ a { color: var(--accent); text-decoration: none; }
 .sidebar-toggle svg { width: 16px; height: 16px; }
 .sidebar-toggle:hover { color: var(--text-primary); background: var(--bg-hover); }
 
-/* New Chat */
+
 .new-chat-btn {
   margin: 14px 14px 10px;
   padding: 10px 14px;
@@ -172,7 +171,7 @@ a { color: var(--accent); text-decoration: none; }
   border-color: var(--accent);
 }
 
-/* Sidebar Sections */
+
 .sidebar-section {
   padding: 12px 14px;
   border-bottom: 1px solid var(--border);
@@ -193,7 +192,7 @@ a { color: var(--accent); text-decoration: none; }
   margin-bottom: 10px;
 }
 
-/* Upload Zone */
+
 .upload-zone {
   border: 1.5px dashed var(--border-strong);
   border-radius: var(--radius-sm);
@@ -231,7 +230,7 @@ a { color: var(--accent); text-decoration: none; }
 }
 .upload-link:hover { color: #fbbf24; }
 
-/* Upload Progress */
+
 .upload-progress-container {
   margin-top: 10px;
   padding: 10px;
@@ -263,7 +262,7 @@ a { color: var(--accent); text-decoration: none; }
   width: 0%;
 }
 
-/* Documents List */
+
 .documents-list { margin-top: 10px; display: flex; flex-direction: column; gap: 6px; }
 
 .doc-item {
@@ -304,7 +303,7 @@ a { color: var(--accent); text-decoration: none; }
 .doc-check { color: var(--success); flex-shrink: 0; }
 .doc-check svg { width: 14px; height: 14px; }
 
-/* KB Status */
+
 .kb-status {
   display: flex;
   align-items: center;
@@ -322,7 +321,7 @@ a { color: var(--accent); text-decoration: none; }
 }
 .kb-status-dot.active { background: var(--success); box-shadow: 0 0 6px var(--success); }
 
-/* Chat History */
+
 .history-list { display: flex; flex-direction: column; gap: 2px; }
 .history-empty { font-size: 12px; color: var(--text-muted); text-align: center; padding: 16px 0; }
 
@@ -346,7 +345,7 @@ a { color: var(--accent); text-decoration: none; }
 
 .history-item svg { width: 14px; height: 14px; flex-shrink: 0; opacity: 0.6; }
 
-/* Sidebar Footer */
+
 .sidebar-footer {
   padding: 14px 16px;
   border-top: 1px solid var(--border);
@@ -377,7 +376,7 @@ a { color: var(--accent); text-decoration: none; }
   50% { opacity: 0.5; }
 }
 
-/* ─── Main Chat ─────────────────────────────────────────────────────────────── */
+
 
 .chat-main {
   flex: 1;
@@ -389,7 +388,7 @@ a { color: var(--accent); text-decoration: none; }
   min-width: 0;
 }
 
-/* ─── Topbar ──────────────────────────────────────────────────────────────── */
+
 
 .topbar {
   height: var(--topbar-height);
@@ -461,7 +460,7 @@ a { color: var(--accent); text-decoration: none; }
 
 .conn-label { font-size: 11px; }
 
-/* ─── Messages Container ───────────────────────────────────────────────────── */
+
 
 .messages-container {
   flex: 1;
@@ -476,7 +475,7 @@ a { color: var(--accent); text-decoration: none; }
 .messages-container::-webkit-scrollbar-track { background: transparent; }
 .messages-container::-webkit-scrollbar-thumb { background: var(--border-strong); border-radius: 99px; }
 
-/* ─── Welcome Screen ───────────────────────────────────────────────────────── */
+
 
 .welcome-screen {
   flex: 1;
@@ -546,7 +545,7 @@ a { color: var(--accent); text-decoration: none; }
   transform: translateY(-1px);
 }
 
-/* ─── Messages List ────────────────────────────────────────────────────────── */
+
 
 .messages-list {
   display: flex;
@@ -557,7 +556,7 @@ a { color: var(--accent); text-decoration: none; }
   width: 100%;
 }
 
-/* ─── Message Bubbles ──────────────────────────────────────────────────────── */
+
 
 .message {
   display: flex;
@@ -627,7 +626,7 @@ a { color: var(--accent); text-decoration: none; }
   max-width: 100%;
 }
 
-/* Markdown-like styling in assistant messages */
+
 .message.assistant .message-bubble h1,
 .message.assistant .message-bubble h2,
 .message.assistant .message-bubble h3 {
@@ -682,7 +681,7 @@ a { color: var(--accent); text-decoration: none; }
   font-size: 13px;
 }
 
-/* Message Timestamp */
+
 .message-meta {
   display: flex;
   align-items: center;
@@ -752,7 +751,7 @@ a { color: var(--accent); text-decoration: none; }
 }
 .source-excerpt { font-size: 11px; color: var(--text-muted); margin-top: 3px; line-height: 1.5; }
 
-/* ─── Typing Indicator ─────────────────────────────────────────────────────── */
+
 
 .typing-indicator {
   display: flex;
@@ -792,7 +791,7 @@ a { color: var(--accent); text-decoration: none; }
   color: var(--text-muted);
 }
 
-/* ─── Input Area ───────────────────────────────────────────────────────────── */
+
 
 .input-area {
   padding: 16px 20px 20px;
@@ -890,7 +889,7 @@ a { color: var(--accent); text-decoration: none; }
   color: var(--text-muted);
 }
 
-/* ─── Toast Notification ───────────────────────────────────────────────────── */
+
 
 .toast {
   position: fixed;
@@ -922,12 +921,12 @@ a { color: var(--accent); text-decoration: none; }
 .toast.error .toast-icon { color: var(--error); }
 .toast.info .toast-icon { color: var(--accent); }
 
-/* ─── Scrollbar for sidebar history ───────────────────────────────────────── */
+
 
 .sidebar-history::-webkit-scrollbar { width: 3px; }
 .sidebar-history::-webkit-scrollbar-thumb { background: var(--border); border-radius: 99px; }
 
-/* ─── No Context Banner ────────────────────────────────────────────────────── */
+
 
 .no-context-banner {
   display: flex;
@@ -943,7 +942,7 @@ a { color: var(--accent); text-decoration: none; }
 }
 .no-context-banner svg { width: 14px; height: 14px; flex-shrink: 0; }
 
-/* ─── Responsive ───────────────────────────────────────────────────────────── */
+
 
 @media (max-width: 768px) {
   .sidebar {
